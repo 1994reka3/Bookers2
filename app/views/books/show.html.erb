@@ -1,2 +1,10 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<h2>Book detail</h2>
+<%= @book.title %>
+<%= @book.body %>
+
+<%= link_to "Edit", edit_book_path(@book) %>
+<%= link_to "Destroy",book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？" %>
