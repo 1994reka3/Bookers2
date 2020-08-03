@@ -10,6 +10,9 @@
     </ul>
   </div>
 <% end %>
+<!-- ログアウト -->
+<%= link_to "logout", destroy_user_session_path, method: :delete %>
+
 <!-- 新規投稿 -->
 <h2>New book</h2>
 <%= form_for(@book) do |f| %>
@@ -22,7 +25,7 @@
 
 <!-- 一覧表示 -->
 <h2>Books</h2>
-<%= @books.each do |book| %>
+<% @books.each do |book| %>
   <p>Title</p>
   <%= link_to book.title, book_path(book.id) %>
   <p>Opinion</p>
