@@ -15,6 +15,7 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
+    @user = current_user
   end
 
   def show
@@ -41,7 +42,7 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
-  private
+  protected
   def book_params
     params.require(:book).permit(:title, :body)
   end

@@ -1,6 +1,16 @@
 <!-- ログアウト -->
 <%= link_to "logout", destroy_user_session_path, method: :delete %>
 
+<!-- ユーザーデータ -->
+<%= form_for(user) do |f| %>
+  <%= f.attachment_field :profile_image %>
+  <p><%= user.name %></p>
+  <p><%= user.introduction %></p>
+  <% if user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(user) %></p>
+  <% end %>
+<% end %>
+
 <!-- 新規投稿 -->
 <h2>New book</h2>
 <%= form_for(book) do |f| %>
