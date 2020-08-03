@@ -1,5 +1,16 @@
 <h2>User info</h2>
-
+<!-- エラーメッセージ -->
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= pluralize(@user.errors.count, "error") %> prohibited this obj from being saved:</h3>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<!-- 編集エリア -->
 <%= form_for(@user) do |f| %>
   <h4>Name</h4>
   <span><%= f.text_field :name %></span>
