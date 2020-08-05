@@ -20,35 +20,53 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li>
-            <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-              <%= link_to "Home", user_path(current_user.id) %>
-            </a>
+            <%= link_to user_path(current_user.id) do %>
+              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+              Home
+            <% end %>
           </li>
-          <li class="">
-            <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><%= link_to "Users", users_path %>
-            </a>
+          <li>
+            <%= link_to users_path do %>
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              Users
+            <% end %>
           </li>
-          <li class="">
-            <a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span><%= link_to "Books", books_path %>
-            </a>
+          <li>
+            <%= link_to books_path do %>
+              <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+              Books
+            <% end %>
           </li>
-          <li class="">
-            <a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-              <%= link_to "logout", destroy_user_session_path, method: :delete %></a>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+              logout
+            <% end %>
           </li>
         <% else %>
-          <li class="">
-            <%= link_to "Home", root_path %>
+          <li>
+            <%= link_to root_path do %>
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                Home
+            <% end %>
           </li>
-          <li class="">
-            <%= link_to "About", homes_about_path %>
+          <li>
+            <%= link_to homes_about_path do %>
+              <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+              About
+            <% end %>
           </li>
-          <li class="">
-            <%= link_to "sign up", new_user_registration_path %>
+          <li>
+            <%= link_to new_user_registration_path do %>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              sign up
+            <% end %>
           </li>
-          <li class="">
-            <a href="#"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span><%= link_to "login", user_session_path %>
-            </a>
+          <li>
+            <%= link_to user_session_path do %>
+              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+              login
+            <% end %>
           </li>
         <% end %>
       </ul>
@@ -61,7 +79,7 @@
   </main>
 
   <footer>
-    <div class="footer">CopyRight Infratop.inc</div>
+    <div class="footer">CopyRight Infratop.inc
   </footer>
 
   </body>
