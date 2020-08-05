@@ -16,7 +16,11 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+.container {
+  padding: 100px;
+}
 
-main {
-  padding-top: 60px;
+.footer {
+  margin: 50px;
+  float: right;
 }
