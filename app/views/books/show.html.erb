@@ -1,13 +1,11 @@
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
-<% end %>
-
-<!-- エラーメッセージ -->
-<%= render 'books/error', newbook: @newbook %>
-
-
 <div class="container">
   <div class="row">
+  <!-- エラーメッセージ -->
+  <%= render 'books/error', newbook: @newbook %>
+  <!-- flashメッセージ -->
+  <% if flash[:notice] %>
+    <p class="flash_message"><%= flash[:notice] %></p>
+   <% end %>
     <div class="col-xs-3">
       <!-- User_info部分テンプレート -->
       <div class="row">
