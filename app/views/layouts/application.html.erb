@@ -20,53 +20,29 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li>
-            <%= link_to user_path(current_user.id) do %>
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-              Home
-            <% end %>
+            <%= link_to 'Home',user_path(current_user.id), class:"glyphicon glyphicon-home" %>
           </li>
           <li>
-            <%= link_to users_path do %>
-              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-              Users
-            <% end %>
+            <%= link_to 'Users',users_path, class:"glyphicon glyphicon-user" %>
           </li>
           <li>
-            <%= link_to books_path do %>
-              <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-              Books
-            <% end %>
+            <%= link_to 'Books',books_path, class:"glyphicon glyphicon-book" %>
           </li>
           <li>
-            <%= link_to destroy_user_session_path, method: :delete do %>
-              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-              logout
-            <% end %>
+            <%= link_to 'logout',destroy_user_session_path, method: :delete , class:"glyphicon glyphicon-log-out" %>
           </li>
         <% else %>
           <li>
-            <%= link_to root_path do %>
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                Home
-            <% end %>
+            <%= link_to 'Home',root_path, class:"glyphicon glyphicon-home" %>
           </li>
           <li>
-            <%= link_to homes_about_path do %>
-              <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
-              About
-            <% end %>
+            <%= link_to 'About',home_about_path, class:"glyphicon glyphicon-link" %>
           </li>
           <li>
-            <%= link_to new_user_registration_path do %>
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              sign up
-            <% end %>
+            <%= link_to 'sign up',new_user_registration_path, class:"glyphicon glyphicon-edit" %>
           </li>
           <li>
-            <%= link_to user_session_path do %>
-              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-              login
-            <% end %>
+            <%= link_to 'login',new_user_session_path, class:"glyphicon glyphicon-log-in" %>
           </li>
         <% end %>
       </ul>
@@ -84,3 +60,20 @@
 
   </body>
 </html>
+
+
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <nav class="nav navbar-nav navbar-left">
+      <span>Bookers</span>
+    </nav>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a class="glyphicon glyphicon-home home" href="/users/22197"> Home</a></li>
+          <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
+          <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
+          <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
