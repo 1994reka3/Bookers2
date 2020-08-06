@@ -16,12 +16,16 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
-.container {
-  padding: 70px;
+.row {
+  padding-top: 50px;
 }
-
 
 .footer {
   margin: 50px;
   float: right;
+}
+
+.navbar-left {
+  color: #fff;
+  font-size: 20px;
 }
