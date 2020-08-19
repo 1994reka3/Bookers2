@@ -1,4 +1,0 @@
-class PostImage < ApplicationRecord
-
-
-end
