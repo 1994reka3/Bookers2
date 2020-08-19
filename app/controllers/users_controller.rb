@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = current_user
     @newbook = Book.new
     @users = User.all
+
   end
 
   def show
@@ -14,12 +15,12 @@ class UsersController < ApplicationController
     @books = @user.books
   end
 
-  def follow
+  def follows
     user = User.find(params[:id])
     @users = user.followings
   end
 
-  def follower
+  def followers
     user = User.find(params[:id])
     @users = user.followers
   end
