@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <% if @user_or_book == "1" %>
+        <h2>Users search for '<%= @search %>'</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="search_table"></th>
+              <th class="search_table">name</th>
+              <th class="search_table">introduction</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td class="search_table"><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %></td>
+              <td class="search_table"><%= user.name %></td>
+              <td class="search_table"><%= user.introduction %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+        <% elsif @user_or_book == "2" %>
+          <h2>Books search for '<%= @search %>'</h2>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="search_table"></th>
+                <th class="search_table">Title</th>
+                <th class="search_table">Opinion</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @books.each do |book| %>
+              <tr>
+                <td class="search_table"><%= attachment_image_tag book.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %></td>
+                <td class="search_table"><%= book.title %></td>
+                <td class="search_table"><%= book.body %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+      <% end %>
+    </div>
+  </div>
+</div>
