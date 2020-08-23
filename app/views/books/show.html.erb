@@ -16,44 +16,46 @@
         <%= render 'books/newbook', newbook: @newbook %>
       </div>
     </div>
-    <!-- 本の詳細一覧 -->
+    <!-- 本の詳細一覧 部分テンプレート -->
     <div class="col-xs-9">
       <h2>Book detail</h2>
       <table class="table table-hover">
-      <tbody>
-        <tr>
-          <td>
-            <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %>
-            <p><%= link_to @book.user.name, user_path(@user) %></p>
-          </td>
-          <td><%= @book.title %></td>
-          <td><%= @book.body %></td>
-          <!--いいね部分-->
-          <td id="favorites_buttons_<%= @book.id %>">
-            <%= render partial: 'books/favorite', locals: { book: @book } %>
-          </td>
-          <!-- コメント件数 -->
-          <td>コメント数: <%= @book.book_comments.count %></td>
-          <!-- 編集・削除ボタン -->
-          <% if user_signed_in? && current_user == @user %>
-          <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %></td>
-          <td><%= link_to "Destroy",book_path(@book), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %></td>
-          <% end %>
-        </tr>
-      </tbody>
+        <tbody>
+          <tr>
+            <td>
+              <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %>
+              <p><%= link_to @book.user.name, user_path(@user) %></p>
+            </td>
+            <td><%= @book.title %></td>
+            <td><%= @book.body %></td>
+            <!--いいね非同期-->
+            <td id="favorites_buttons_<%= @book.id %>">
+              <%= render partial: 'books/favorite', locals: { book: @book } %>
+            </td>
+            <!-- コメント件数 非同期-->
+            <td id="comments_count">
+              <%= render partial: 'book_comments/count', locals: { book: @book } %>
+            </td>
+            <!-- 編集・削除ボタン -->
+            <% if user_signed_in? && current_user == @user %>
+            <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %></td>
+            <td><%= link_to "Destroy",book_path(@book), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %></td>
+            <% end %>
+          </tr>
+        </tbody>
       </table>
-      <!-- コメント詳細 -->
+      <!-- コメント詳細 非同期-->
       <table>
         <tbody id="comments_area">
           <%= render partial: 'book_comments/index', locals: { book_comments: @book_comments, book: @book } %>
         </tbody>
       </table>
-      <!-- コメントフォーム -->
+      <!-- コメントフォーム 非同期-->
       <div id="comment_form">
         <% if user_signed_in? %>
           <%= render partial: 'book_comments/form', locals: { book: @book, book_comment: @book_comment } %>
         <% end %>
-    </div>
+      </div>
     </div>
   </div>
 </div>
