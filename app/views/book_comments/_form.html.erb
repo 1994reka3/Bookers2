@@ -1,0 +1,5 @@
+<!-- コメント入力欄 -->
+<%= form_with(model: [book, book_comment]) do |f| %>
+  <%= f.text_area :comment, rows:'3', class: "form-control",placeholder: "コメントはこちら", id: "textarea" %>
+  <%= f.submit "送信" %>
+<% end %>

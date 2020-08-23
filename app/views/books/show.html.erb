@@ -29,21 +29,9 @@
           <td><%= @book.title %></td>
           <td><%= @book.body %></td>
           <!--いいね部分-->
-          <% if @book.favorited_by?(current_user) %>
-            <td>
-              <%= link_to book_favorites_path(@book), method: :delete do %>
-                <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-                <%= @book.favorites.count %>
-              <% end %>
-            </td>
-          <% else %>
-            <td>
-              <%= link_to book_favorites_path(@book), method: :post do %>
-                <i class="far fa-heart" aria-hidden="true"></i>
-                <%= @book.favorites.count %>
-              <% end %>
-            </td>
-          <% end %>
+          <td id="favorites_buttons_<%= @book.id %>">
+            <%= render partial: 'books/favorite', locals: { book: @book } %>
+          </td>
           <!-- コメント件数 -->
           <td>コメント数: <%= @book.book_comments.count %></td>
           <!-- 編集・削除ボタン -->
@@ -56,29 +44,16 @@
       </table>
       <!-- コメント詳細 -->
       <table>
-        <tbody>
-          <% @book.book_comments.each do |book_comment| %>
-            <tr>
-              <td>
-                <%= attachment_image_tag book_comment.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %>
-                <p><%= book_comment.user.name %></p>
-              </td>
-              <td><%= book_comment.comment %>
-              </td>
-              <% if book_comment.user == current_user %>
-                <td>
-                  <%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-danger" %>
-                </td>
-              <% end %>
-            </tr>
-          <% end %>
+        <tbody id="comments_area">
+          <%= render partial: 'book_comments/index', locals: { book_comments: @book_comments, book: @book } %>
         </tbody>
       </table>
       <!-- コメントフォーム -->
-      <%= form_for [@book, @book_comment] do |f| %>
-        <%= f.text_area :comment, rows:'3', class: "form-control",placeholder: "コメントはこちら" %>
-        <%= f.submit "送信" %>
-      <% end %>
+      <div id="comment_form">
+        <% if user_signed_in? %>
+          <%= render partial: 'book_comments/form', locals: { book: @book, book_comment: @book_comment } %>
+        <% end %>
+    </div>
     </div>
   </div>
 </div>
